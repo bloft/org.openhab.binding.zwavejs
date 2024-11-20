@@ -1,0 +1,13 @@
+{
+  "type": "result",
+  "success": true,
+  "messageId": "2",
+  "result": {
+    "type": "boolean",
+    "readable": true,
+    "writeable": false,
+    "label": "Current value",
+    "stateful": true,
+    "secret": false
+  }
+}

@@ -1,0 +1,377 @@
+{
+  "type": "result",
+  "success": true,
+  "messageId": "2",
+  "result": {
+    "valueIds": [
+      {
+        "commandClassName": "Binary Switch",
+        "commandClass": 37,
+        "endpoint": 0,
+        "property": "currentValue",
+        "propertyName": "currentValue"
+      },
+      {
+        "commandClassName": "Binary Switch",
+        "commandClass": 37,
+        "endpoint": 0,
+        "property": "targetValue",
+        "propertyName": "targetValue"
+      },
+      {
+        "commandClassName": "Binary Switch",
+        "commandClass": 37,
+        "endpoint": 0,
+        "property": "duration",
+        "propertyName": "duration"
+      },
+      {
+        "commandClassName": "Meter",
+        "commandClass": 50,
+        "endpoint": 0,
+        "property": "value",
+        "propertyKey": 65537,
+        "propertyName": "value",
+        "propertyKeyName": "Electric_kWh_Consumed"
+      },
+      {
+        "commandClassName": "Meter",
+        "commandClass": 50,
+        "endpoint": 0,
+        "property": "value",
+        "propertyKey": 66049,
+        "propertyName": "value",
+        "propertyKeyName": "Electric_W_Consumed"
+      },
+      {
+        "commandClassName": "Meter",
+        "commandClass": 50,
+        "endpoint": 0,
+        "property": "reset",
+        "propertyKey": 1,
+        "propertyName": "reset",
+        "propertyKeyName": "Electric"
+      },
+      {
+        "commandClassName": "Meter",
+        "commandClass": 50,
+        "endpoint": 0,
+        "property": "reset",
+        "propertyName": "reset"
+      },
+      {
+        "commandClassName": "Configuration",
+        "commandClass": 112,
+        "endpoint": 0,
+        "property": 1,
+        "propertyName": "SW1 Switch Type"
+      },
+      {
+        "commandClassName": "Configuration",
+        "commandClass": 112,
+        "endpoint": 0,
+        "property": 17,
+        "propertyName": "O1: State After Power Failure"
+      },
+      {
+        "commandClassName": "Configuration",
+        "commandClass": 112,
+        "endpoint": 0,
+        "property": 19,
+        "propertyName": "O1: Auto-Off Timer"
+      },
+      {
+        "commandClassName": "Configuration",
+        "commandClass": 112,
+        "endpoint": 0,
+        "property": 20,
+        "propertyName": "O1: Auto-On Timer"
+      },
+      {
+        "commandClassName": "Configuration",
+        "commandClass": 112,
+        "endpoint": 0,
+        "property": 25,
+        "propertyName": "O1: Auto-On/Off Timer Unit"
+      },
+      {
+        "commandClassName": "Configuration",
+        "commandClass": 112,
+        "endpoint": 0,
+        "property": 23,
+        "propertyName": "O1: Relay Type"
+      },
+      {
+        "commandClassName": "Configuration",
+        "commandClass": 112,
+        "endpoint": 0,
+        "property": 36,
+        "propertyName": "O1: Power Change Report Threshold"
+      },
+      {
+        "commandClassName": "Configuration",
+        "commandClass": 112,
+        "endpoint": 0,
+        "property": 39,
+        "propertyName": "O1: Minimum Time Between Power Reports"
+      },
+      {
+        "commandClassName": "Configuration",
+        "commandClass": 112,
+        "endpoint": 0,
+        "property": 91,
+        "propertyName": "Alarm Configuration: Water"
+      },
+      {
+        "commandClassName": "Configuration",
+        "commandClass": 112,
+        "endpoint": 0,
+        "property": 92,
+        "propertyName": "Alarm Configuration: Smoke"
+      },
+      {
+        "commandClassName": "Configuration",
+        "commandClass": 112,
+        "endpoint": 0,
+        "property": 93,
+        "propertyName": "Alarm Configuration: CO"
+      },
+      {
+        "commandClassName": "Configuration",
+        "commandClass": 112,
+        "endpoint": 0,
+        "property": 94,
+        "propertyName": "Alarm Configuration: Heat"
+      },
+      {
+        "commandClassName": "Configuration",
+        "commandClass": 112,
+        "endpoint": 0,
+        "property": 120,
+        "propertyName": "Factory Reset"
+      },
+      {
+        "commandClassName": "Configuration",
+        "commandClass": 112,
+        "endpoint": 0,
+        "property": 201,
+        "propertyName": "Serial Number: Part 1"
+      },
+      {
+        "commandClassName": "Configuration",
+        "commandClass": 112,
+        "endpoint": 0,
+        "property": 202,
+        "propertyName": "Serial Number: Part 2"
+      },
+      {
+        "commandClassName": "Configuration",
+        "commandClass": 112,
+        "endpoint": 0,
+        "property": 203,
+        "propertyName": "Serial Number: Part 3"
+      },
+      {
+        "commandClassName": "Notification",
+        "commandClass": 113,
+        "endpoint": 0,
+        "property": "Heat Alarm",
+        "propertyKey": "Heat sensor status",
+        "propertyName": "Heat Alarm",
+        "propertyKeyName": "Heat sensor status"
+      },
+      {
+        "commandClassName": "Notification",
+        "commandClass": 113,
+        "endpoint": 0,
+        "property": "Power Management",
+        "propertyKey": "Over-current status",
+        "propertyName": "Power Management",
+        "propertyKeyName": "Over-current status"
+      },
+      {
+        "commandClassName": "Notification",
+        "commandClass": 113,
+        "endpoint": 0,
+        "property": "Power Management",
+        "propertyKey": "Mains status",
+        "propertyName": "Power Management",
+        "propertyKeyName": "Mains status"
+      },
+      {
+        "commandClassName": "Notification",
+        "commandClass": 113,
+        "endpoint": 0,
+        "property": "alarmType",
+        "propertyName": "alarmType"
+      },
+      {
+        "commandClassName": "Notification",
+        "commandClass": 113,
+        "endpoint": 0,
+        "property": "alarmLevel",
+        "propertyName": "alarmLevel"
+      },
+      {
+        "commandClassName": "Manufacturer Specific",
+        "commandClass": 114,
+        "endpoint": 0,
+        "property": "manufacturerId",
+        "propertyName": "manufacturerId"
+      },
+      {
+        "commandClassName": "Manufacturer Specific",
+        "commandClass": 114,
+        "endpoint": 0,
+        "property": "productType",
+        "propertyName": "productType"
+      },
+      {
+        "commandClassName": "Manufacturer Specific",
+        "commandClass": 114,
+        "endpoint": 0,
+        "property": "productId",
+        "propertyName": "productId"
+      },
+      {
+        "commandClassName": "Version",
+        "commandClass": 134,
+        "endpoint": 0,
+        "property": "libraryType",
+        "propertyName": "libraryType"
+      },
+      {
+        "commandClassName": "Version",
+        "commandClass": 134,
+        "endpoint": 0,
+        "property": "protocolVersion",
+        "propertyName": "protocolVersion"
+      },
+      {
+        "commandClassName": "Version",
+        "commandClass": 134,
+        "endpoint": 0,
+        "property": "firmwareVersions",
+        "propertyName": "firmwareVersions"
+      },
+      {
+        "commandClassName": "Version",
+        "commandClass": 134,
+        "endpoint": 0,
+        "property": "hardwareVersion",
+        "propertyName": "hardwareVersion"
+      },
+      {
+        "commandClassName": "Version",
+        "commandClass": 134,
+        "endpoint": 0,
+        "property": "sdkVersion",
+        "propertyName": "sdkVersion"
+      },
+      {
+        "commandClassName": "Version",
+        "commandClass": 134,
+        "endpoint": 0,
+        "property": "applicationFrameworkAPIVersion",
+        "propertyName": "applicationFrameworkAPIVersion"
+      },
+      {
+        "commandClassName": "Version",
+        "commandClass": 134,
+        "endpoint": 0,
+        "property": "applicationFrameworkBuildNumber",
+        "propertyName": "applicationFrameworkBuildNumber"
+      },
+      {
+        "commandClassName": "Version",
+        "commandClass": 134,
+        "endpoint": 0,
+        "property": "hostInterfaceVersion",
+        "propertyName": "hostInterfaceVersion"
+      },
+      {
+        "commandClassName": "Version",
+        "commandClass": 134,
+        "endpoint": 0,
+        "property": "hostInterfaceBuildNumber",
+        "propertyName": "hostInterfaceBuildNumber"
+      },
+      {
+        "commandClassName": "Version",
+        "commandClass": 134,
+        "endpoint": 0,
+        "property": "zWaveProtocolVersion",
+        "propertyName": "zWaveProtocolVersion"
+      },
+      {
+        "commandClassName": "Version",
+        "commandClass": 134,
+        "endpoint": 0,
+        "property": "zWaveProtocolBuildNumber",
+        "propertyName": "zWaveProtocolBuildNumber"
+      },
+      {
+        "commandClassName": "Version",
+        "commandClass": 134,
+        "endpoint": 0,
+        "property": "applicationVersion",
+        "propertyName": "applicationVersion"
+      },
+      {
+        "commandClassName": "Version",
+        "commandClass": 134,
+        "endpoint": 0,
+        "property": "applicationBuildNumber",
+        "propertyName": "applicationBuildNumber"
+      },
+      {
+        "commandClassName": "Indicator",
+        "commandClass": 135,
+        "endpoint": 0,
+        "property": 80,
+        "propertyKey": 3,
+        "propertyName": "Node Identify",
+        "propertyKeyName": "On/Off Period: Duration"
+      },
+      {
+        "commandClassName": "Indicator",
+        "commandClass": 135,
+        "endpoint": 0,
+        "property": 80,
+        "propertyKey": 4,
+        "propertyName": "Node Identify",
+        "propertyKeyName": "On/Off Cycle Count"
+      },
+      {
+        "commandClassName": "Indicator",
+        "commandClass": 135,
+        "endpoint": 0,
+        "property": 80,
+        "propertyKey": 5,
+        "propertyName": "Node Identify",
+        "propertyKeyName": "On/Off Period: On time"
+      },
+      {
+        "commandClassName": "Indicator",
+        "commandClass": 135,
+        "endpoint": 0,
+        "property": "value",
+        "propertyName": "value"
+      },
+      {
+        "commandClassName": "Indicator",
+        "commandClass": 135,
+        "endpoint": 0,
+        "property": "identify",
+        "propertyName": "identify"
+      },
+      {
+        "commandClassName": "Indicator",
+        "commandClass": 135,
+        "endpoint": 0,
+        "property": "timeout",
+        "propertyName": "timeout"
+      }
+    ]
+  }
+}

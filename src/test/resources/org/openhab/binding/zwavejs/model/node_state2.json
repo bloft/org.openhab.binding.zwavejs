@@ -1,0 +1,246 @@
+{
+  "type": "result",
+  "success": true,
+  "messageId": "3",
+  "result": {
+    "state": {
+      "nodeId": 5,
+      "index": 0,
+      "installerIcon": 1792,
+      "userIcon": 1792,
+      "status": 3,
+      "ready": false,
+      "isListening": true,
+      "isRouting": true,
+      "isSecure": false,
+      "manufacturerId": 1120,
+      "productId": 143,
+      "productType": 2,
+      "firmwareVersion": "11.3.0",
+      "zwavePlusVersion": 2,
+      "deviceConfig": {
+        "filename": "/usr/src/app/store/.config-db/devices/0x0460/qmsw-0A1P8.json",
+        "isEmbedded": true,
+        "manufacturer": "Shelly Europe Ltd.",
+        "manufacturerId": 1120,
+        "label": "QMSW-0A1P8",
+        "description": "Wave 1PM Mini",
+        "devices": [
+          {
+            "productType": 2,
+            "productId": 143
+          }
+        ],
+        "firmwareVersion": {
+          "min": "0.0",
+          "max": "255.255"
+        },
+        "preferred": false,
+        "paramInformation": {
+          "_map": {}
+        },
+        "metadata": {
+          "inclusion": "6.1 Adding the Device to a Z-Wave™ network (inclusion)\nNote! All Device outputs (O, O1, O2, etc. - depending on the Device type) will turn the load 1s on/1s off /1s on/1s off if the Device is successfully added to/removed from a Z-Wave™ network.\n\n6.1.1 SmartStart adding (inclusion)\nSmartStart enabled products can be added into a Z-Wave™ network by scanning the Z-Wave™ QR Code present on the Device with a gateway providing SmartStart inclusion. No further action is required, and the SmartStart device will be added automatically within 10 minutes of being switched on in the network vicinity.\n1. With the gateway application scan the QR code on the Device label and add the Security 2 (S2) Device Specific Key (DSK) to the provisioning list in the gateway.\n2. Connect the Device to a power supply.\n3. Check if the blue LED is blinking in Mode 1. If so, the Device is not added to a Z-Wave™ network.\n4. Adding will be initiated automatically within a few seconds after connecting the Device to a power supply, and the Device will be added to a Z-Wave™ network automatically.\n5. The blue LED will be blinking in Mode 2 during the adding process.\n6. The green LED will be blinking in Mode 1 if the Device is successfully added to a Z-Wave™ network.\n\n6.1.2 Adding (inclusion) with a switch/push-button\n1. Connect the Device to a power supply.\n2. Check if the blue LED is blinking in Mode 1. If so, the Device is not added to a Z-Wave™ network.\n3. Enable add/remove mode on the gateway.\n4. Toggle the switch/push-button connected to any of the SW terminals (SW, SW1, SW2, etc.) 3 times within 3 seconds (this procedure puts the Device in Learn mode*). The Device must receive on/off signal 3 times, which means pressing the momentary switch 3 times, or toggling the switch on and off 3 times.\n5. The blue LED will be blinking in Mode 2 during the adding process.\n6. The green LED will be blinking in Mode 1 if the Device is successfully added to a Z-Wave™ network.\n*Learn mode - a state that allows the Device to receive network information from the gateway.\n\n6.1.3 Adding (inclusion) with the S button\n1. Connect the Device to a power supply.\n2. Check if the blue LED is blinking in Mode 1. If so, the Device is not added to a Z-Wave™ network.\n3. Enable add/remove mode on the gateway.\n4. To enter the Setting mode, quickly press and hold the S button on the Device until the LED turns solid blue.\n5. Quickly release and then press and hold (> 2s) the S button on the Device until the blue LED starts blinking in Mode 3. Releasing the S button will start the Learn mode.\n6. The blue LED will be blinking in Mode 2 during the adding process.\n7. The green LED will be blinking in Mode 1 if the Device is successfully added to a Z-Wave™ network.\nNote! In Setting mode, the Device has a timeout of 10s before entering again into Normal mode",
+          "exclusion": "Removing the Device from a Z-Wave™ network (exclusion)\nNote! The Device will be removed from your Z-wave™ network, but any custom configuration parameters will not be erased.\nNote! All Device outputs (O, O1, O2, etc. - depending on the Device type) will turn the load 1s on/1s off /1s on/1s off if the Device is successfully added to/removed from a Z-Wave™ network.\n\n6.2.1 Removing (exclusion) with a switch/push-button\n1. Connect the Device to a power supply.\n2. Check if the green LED is blinking in Mode 1. If so, the Device is added to a Z-Wave™ network.\n3. Enable add/remove mode on the gateway.\n4. Toggle the switch/push-button connected to any of the SW terminals (SW, SW1, SW2,…) 3 times within 3 seconds (this procedure puts the Device in Learn mode). The Device must receive on/off signal 3 times, which means pressing the momentary switch 3 times, or toggling the switch on and off 3 times.\n5. The blue LED will be blinking in Mode 2 during the removing process.\n6. The blue LED will be blinking in Mode 1 if the Device is successfully removed from a Z-Wave™ network.\n\n6.2.2 Removing (exclusion) with the S button\n1. Connect the Device to a power supply.\n2. Check if the green LED is blinking in Mode 1. If so, the Device is added to a Z-Wave™ network.\n3. Enable add/remove mode on the gateway.\n4. To enter the Setting mode, quickly press and hold the S button on the Device until the LED turns solid blue.\n5. Quickly release and then press and hold (> 2s) the S button on the Device until the blue LED starts blinking in Mode 3. Releasing the S button will start the Learn mode.\n6. The blue LED will be blinking in Mode 2 during the removing process.\n7. The blue LED will be blinking in Mode 1 if the Device is successfully removed from a Z-Wave™ network.\nNote! In Setting mode, the Device has a timeout of 10s before entering again into Normal mode",
+          "reset": "6.3 Factory reset\n6.3.1 Factory reset general\nAfter Factory reset, all custom parameters and stored values (kWh, associations, routings, etc.) will return to their default state. HOME ID and NODE ID assigned to the Device will be deleted. Use this reset procedure only when the gateway is missing or otherwise inoperable.\n\n6.3.2 Factory reset with a switch/push-button\nNote! Factory reset with a switch/push-button is only possible within the first minute after the Device is connected to a power supply.\n1. Connect the Device to a power supply.\n2. Toggle the switch/push-button connected to any of the SW terminals (SW, SW1, SW2,…) 5 times within 3 seconds. The Device must receive on/off signal 5 times, which means pressing the push-button 5 times, or toggling the switch on and off 5 times.\n3. During factory reset, the LED will turn solid green for about 1s, then the blue and red LED will start blinking in Mode 3 for approx. 2s.\n4. The blue LED will be blinking in Mode 1 if the Factory reset is successful.\n\n6.3.3 Factory reset with the S button\nNote! Factory reset with the S button is possible anytime.\n1. To enter the Setting mode, quickly press and hold the S button on the Device until the LED turns solid blue.\n2. Press the S button multiple times until the LED turns solid red.\n3. Press and hold (> 2s) S button on the Device until the red LED starts blinking in Mode 3. Releasing the S button will start the factory reset.\n4. During factory reset, the LED will turn solid green for about 1s, then the blue and red LED will start blinking in Mode 3 for approx. 2s.\n5. The blue LED will be blinking in Mode 1 if the Factory reset is successful.\n\n6.3.4 Remote factory reset with parameter with the gateway\nFactory reset can be done remotely with the settings in Parameter No. 120",
+          "manual": "https://kb.shelly.cloud/knowledge-base/shelly-qubino-wave-devices"
+        }
+      },
+      "label": "QMSW-0A1P8",
+      "endpointCountIsDynamic": false,
+      "endpointsHaveIdenticalCapabilities": false,
+      "individualEndpointCount": 0,
+      "aggregatedEndpointCount": 0,
+      "interviewAttempts": 0,
+      "endpoints": [
+        {
+          "nodeId": 5,
+          "index": 0,
+          "installerIcon": 1792,
+          "userIcon": 1792,
+          "deviceClass": {
+            "basic": {
+              "key": 4,
+              "label": "Routing Slave"
+            },
+            "generic": {
+              "key": 16,
+              "label": "Binary Switch"
+            },
+            "specific": {
+              "key": 0,
+              "label": "Unused"
+            },
+            "mandatorySupportedCCs": [
+              32,
+              37
+            ],
+            "mandatoryControlledCCs": []
+          },
+          "commandClasses": [
+            {
+              "id": 37,
+              "name": "Binary Switch",
+              "version": 2,
+              "isSecure": false
+            },
+            {
+              "id": 94,
+              "name": "Z-Wave Plus Info",
+              "version": 2,
+              "isSecure": false
+            },
+            {
+              "id": 152,
+              "name": "Security",
+              "version": 1,
+              "isSecure": true
+            },
+            {
+              "id": 159,
+              "name": "Security 2",
+              "version": 1,
+              "isSecure": true
+            },
+            {
+              "id": 85,
+              "name": "Transport Service",
+              "version": 2,
+              "isSecure": false
+            },
+            {
+              "id": 134,
+              "name": "Version",
+              "version": 3,
+              "isSecure": false
+            },
+            {
+              "id": 108,
+              "name": "Supervision",
+              "version": 1,
+              "isSecure": false
+            },
+            {
+              "id": 115,
+              "name": "Powerlevel",
+              "version": 1,
+              "isSecure": false
+            },
+            {
+              "id": 96,
+              "name": "Multi Channel",
+              "version": 4,
+              "isSecure": false
+            },
+            {
+              "id": 135,
+              "name": "Indicator",
+              "version": 3,
+              "isSecure": false
+            },
+            {
+              "id": 122,
+              "name": "Firmware Update Meta Data",
+              "version": 5,
+              "isSecure": false
+            },
+            {
+              "id": 90,
+              "name": "Device Reset Locally",
+              "version": 1,
+              "isSecure": false
+            },
+            {
+              "id": 142,
+              "name": "Multi Channel Association",
+              "version": 3,
+              "isSecure": false
+            },
+            {
+              "id": 89,
+              "name": "Association Group Information",
+              "version": 3,
+              "isSecure": false
+            },
+            {
+              "id": 133,
+              "name": "Association",
+              "version": 2,
+              "isSecure": false
+            },
+            {
+              "id": 112,
+              "name": "Configuration",
+              "version": 4,
+              "isSecure": false
+            },
+            {
+              "id": 113,
+              "name": "Notification",
+              "version": 8,
+              "isSecure": false
+            },
+            {
+              "id": 50,
+              "name": "Meter",
+              "version": 6,
+              "isSecure": false
+            },
+            {
+              "id": 114,
+              "name": "Manufacturer Specific",
+              "version": 2,
+              "isSecure": false
+            }
+          ]
+        }
+      ],
+      "values": [],
+      "isFrequentListening": false,
+      "maxDataRate": 100000,
+      "supportedDataRates": [
+        40000,
+        100000
+      ],
+      "protocolVersion": 3,
+      "supportsBeaming": true,
+      "supportsSecurity": false,
+      "nodeType": 1,
+      "zwavePlusNodeType": 0,
+      "zwavePlusRoleType": 5,
+      "deviceClass": {
+        "basic": {
+          "key": 4,
+          "label": "Routing Slave"
+        },
+        "generic": {
+          "key": 16,
+          "label": "Binary Switch"
+        },
+        "specific": {
+          "key": 0,
+          "label": "Unused"
+        },
+        "mandatorySupportedCCs": [
+          32,
+          37
+        ],
+        "mandatoryControlledCCs": []
+      },
+      "interviewStage": "Complete",
+      "deviceDatabaseUrl": "https://devices.zwave-js.io/?jumpTo=0x0460:0x0002:0x008f:11.3.0",
+      "statistics": {
+        "commandsTX": 0,
+        "commandsRX": 0,
+        "commandsDroppedRX": 0,
+        "commandsDroppedTX": 0,
+        "timeoutResponse": 0
+      },
+      "highestSecurityClass": -1,
+      "isControllerNode": false,
+      "keepAwake": false,
+      "lastSeen": "2024-11-08T14:53:41.426Z",
+      "protocol": 0
+    }
+  }
+}

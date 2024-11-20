@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config-description:config-descriptions
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:config-description="https://openhab.org/schemas/config-description/v1.0.0"
+        xsi:schemaLocation="https://openhab.org/schemas/config-description/v1.0.0 https://openhab.org/schemas/config-description-1.0.0.xsd">
+
+    <config-description uri="thing-type:zwavejs:number_channel">
+        <parameter name="endpoint" type="integer" required="true">
+            <label>Endpoint</label>
+            <description></description>
+        </parameter>
+
+        <parameter name="commandClass" type="integer" required="true">
+            <label>Command Class</label>
+            <description></description>
+        </parameter>
+
+        <parameter name="property" type="text" required="true">
+            <label>Property</label>
+            <description></description>
+        </parameter>
+
+        <parameter name="propertyKey" type="text">
+            <label>PropertyKey</label>
+            <description></description>
+        </parameter>
+
+        <parameter name="scale" type="integer">
+            <label>Scale</label>
+            <default>0</default>
+            <description></description>
+        </parameter>
+
+        <parameter name="min" type="decimal">
+            <label>Absolute minimum</label>
+            <description>This configuration represents the minimum of the allowed range. For a percentage channel that equals zero percent.</description>
+            <advanced>true</advanced>
+        </parameter>
+
+        <parameter name="max" type="decimal">
+            <label>Absolute maximum</label>
+            <description>This configuration represents the maximum of the allowed range. For a percentage channel that equals one-hundred percent.</description>
+            <advanced>true</advanced>
+        </parameter>
+
+    </config-description>
+</config-description:config-descriptions>

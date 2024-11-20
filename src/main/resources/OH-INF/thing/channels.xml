@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<thing:thing-descriptions bindingId="zwavejs"
+                          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                          xmlns:thing="https://openhab.org/schemas/thing-description/v1.0.0"
+                          xsi:schemaLocation="https://openhab.org/schemas/thing-description/v1.0.0 https://openhab.org/schemas/thing-description-1.0.0.xsd">
+
+    <channel-type id="string">
+        <item-type>String</item-type>
+        <label>Text value</label>
+        <config-description-ref uri="thing-type:zwavejs:string_channel" />
+    </channel-type>
+
+    <channel-type id="number">
+        <item-type>Number</item-type>
+        <label>Number value</label>
+        <config-description-ref uri="thing-type:zwavejs:number_channel" />
+    </channel-type>
+
+    <channel-type id="contact">
+        <item-type>Contact</item-type>
+        <label>Contact value</label>
+        <config-description-ref uri="thing-type:zwavejs:boolean_channel" />
+    </channel-type>
+
+    <channel-type id="switch">
+        <item-type>Switch</item-type>
+        <label>Switch value</label>
+        <config-description-ref uri="thing-type:zwavejs:switch_channel" />
+    </channel-type>
+
+</thing:thing-descriptions>

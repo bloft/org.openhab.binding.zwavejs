@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config-description:config-descriptions
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:config-description="https://openhab.org/schemas/config-description/v1.0.0"
+        xsi:schemaLocation="https://openhab.org/schemas/config-description/v1.0.0 https://openhab.org/schemas/config-description-1.0.0.xsd">
+
+    <config-description uri="thing-type:zwavejs:boolean_channel">
+        <parameter name="endpoint" type="integer" required="true">
+            <label>Endpoint</label>
+            <description></description>
+        </parameter>
+
+        <parameter name="commandClass" type="integer" required="true">
+            <label>Command Class</label>
+            <description></description>
+        </parameter>
+
+        <parameter name="property" type="text" required="true">
+            <label>Property</label>
+            <description></description>
+        </parameter>
+
+        <parameter name="propertyKey" type="text">
+            <label>PropertyKey</label>
+            <description></description>
+        </parameter>
+
+        <parameter name="on" type="text">
+            <label>On Value</label>
+            <description></description>
+            <default>true</default>
+        </parameter>
+
+        <parameter name="off" type="text">
+            <label>Off Value</label>
+            <description></description>
+            <default>false</default>
+        </parameter>
+
+    </config-description>
+</config-description:config-descriptions>

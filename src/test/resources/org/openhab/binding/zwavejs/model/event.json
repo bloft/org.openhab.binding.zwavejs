@@ -1,0 +1,1 @@
+{"type":"event","event":{"source":"node","event":"value updated","nodeId":7,"args":{"commandClassName":"Meter","commandClass":50,"property":"value","propertyKey":66561,"endpoint":0,"newValue":234.211,"prevValue":234.03,"propertyName":"value","propertyKeyName":"Electric_V_Consumed"}}}

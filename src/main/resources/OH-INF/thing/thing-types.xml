@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<thing:thing-descriptions bindingId="zwavejs"
+                          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                          xmlns:thing="https://openhab.org/schemas/thing-description/v1.0.0"
+                          xsi:schemaLocation="https://openhab.org/schemas/thing-description/v1.0.0 https://openhab.org/schemas/thing-description-1.0.0.xsd">
+
+    <bridge-type id="bridge">
+        <label>Z-Wave JS Bridge</label>
+        <description>A connection to a Z-Wave JS server</description>
+
+        <config-description>
+            <parameter name="host" type="text" required="true">
+                <label>Hostname/IP</label>
+                <description>The IP/Hostname of the Z-Wave JS server</description>
+                <context>network-address</context>
+            </parameter>
+
+            <parameter name="port" type="integer">
+                <label>Port</label>
+                <description>The port is optional, if none is provided, the typical
+                    port 3000 is used.</description>
+                <default>3000</default>
+                <context>network-address</context>
+                <advanced>true</advanced>
+            </parameter>
+        </config-description>
+    </bridge-type>
+
+    <thing-type id="node" extensible="string,number">
+        <supported-bridge-type-refs>
+            <bridge-type-ref id="bridge" />
+        </supported-bridge-type-refs>
+        <label>Z-Wave JS Node</label>
+        <description>You need a configured bridge first. Dynamically add channels of various types to this Thing..</description>
+
+        <config-description>
+            <parameter name="nodeId" type="integer" required="true">
+                <label>Node Id</label>
+                <description>The id of the node</description>
+            </parameter>
+        </config-description>
+    </thing-type>
+
+</thing:thing-descriptions>

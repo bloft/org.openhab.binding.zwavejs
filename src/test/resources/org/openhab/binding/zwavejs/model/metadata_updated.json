@@ -1,0 +1,32 @@
+{
+  "type": "event",
+  "event": {
+    "source": "node",
+    "event": "metadata updated",
+    "nodeId": 7,
+    "args": {
+      "commandClassName": "Meter",
+      "commandClass": 50,
+      "property": "value",
+      "propertyKey": 66817,
+      "endpoint": 0,
+      "metadata": {
+        "type": "number",
+        "readable": true,
+        "writeable": false,
+        "label": "Electric Consumption [A]",
+        "ccSpecific": {
+          "meterType": 1,
+          "scale": 5,
+          "rateType": 1
+        },
+        "unit": "A",
+        "stateful": true,
+        "secret": false
+      },
+      "propertyName": "value",
+      "propertyKeyName": "Electric_A_Consumed",
+      "nodeId": 7
+    }
+  }
+}

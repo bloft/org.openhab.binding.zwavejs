@@ -1,0 +1,19 @@
+{
+  "type": "event",
+  "event": {
+    "source": "node",
+    "event": "value updated",
+    "nodeId": 7,
+    "args": {
+      "commandClassName": "Meter",
+      "commandClass": 50,
+      "property": "value",
+      "propertyKey": 66561,
+      "endpoint": 0,
+      "newValue": 227.54,
+      "prevValue": 227.013,
+      "propertyName": "value",
+      "propertyKeyName": "Electric_V_Consumed"
+    }
+  }
+}
