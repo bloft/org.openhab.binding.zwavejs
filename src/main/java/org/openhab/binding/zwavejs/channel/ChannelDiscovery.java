@@ -14,11 +14,12 @@ import java.util.stream.Collectors;
 
 public interface ChannelDiscovery {
     ChannelDiscovery[] ALL_DISCOVERY = new ChannelDiscovery[]{
-            new MeterChannelDiscovery(),
-            new BatteryChannelDiscovery(),
-            new MultilevelChannelDiscovery(),
-            new NotificationChannelDiscovery(),
             new BinarySwitchChannelDiscovery(),
+            new ColorChannelDiscovery(),
+            new MultilevelChannelDiscovery(),
+            new MeterChannelDiscovery(),
+            new NotificationChannelDiscovery(),
+            new BatteryChannelDiscovery(),
     };
 
     List<? extends Channel> getChannels(ThingUID thing, List<? extends ValueId> valuesIds);
@@ -29,6 +30,35 @@ public interface ChannelDiscovery {
 
     static List<Channel> discover(ThingUID thing, List<? extends ValueId> valuesIds, ChannelDiscovery ... discoveries) {
         return Arrays.stream(discoveries).flatMap(d -> d.getChannels(thing, valuesIds).stream()).collect(Collectors.toList());
+    }
+
+    default String itemType(ValueMetadata metadata) {
+        switch(metadata.getType()) {
+            case "number":
+                if(metadata.getUnit() != null) {
+                    switch (metadata.getUnit()) {
+                        case "kWh": return "Number:Energy";
+                        case "W": return "Number:Power";
+                        case "V":;
+                        case "mV": return "Number:ElectricPotential";
+                        case "A":;
+                        case "mA": return "Number:ElectricCurrent";
+                        case "%": return "Number:Dimensionless";
+                        case "°C": return "Number:Temperature";
+                        case "Lux": return "Number:Illuminance";
+                        case "mmHg":
+                        case "kPa": return "Number:Pressure";
+                        case "cm":
+                        case "m": return "Number:Length";
+                        case "kg": return "Number:Mass";
+                    }
+                }
+                return "Number";
+            case "string": return "String";
+            case "boolean": return "Switch";
+            case "color": return "Color";
+            default:  return null;
+        }
     }
 
     default Configuration configOf(ValueId valueId) {
@@ -44,12 +74,8 @@ public interface ChannelDiscovery {
         switch(metadata.getType()) {
             case "number" : return BindingConstants.CHANNEL_NUMBER;
             case "string" : return BindingConstants.CHANNEL_STRING;
-            case "boolean" :
-                if(metadata.isWriteable()) {
-                    return BindingConstants.CHANNEL_SWITCH;
-                } else {
-                    return BindingConstants.CHANNEL_CONTACT;
-                }
+            case "boolean" : return BindingConstants.CHANNEL_SWITCH;
+            case "color" : return BindingConstants.CHANNEL_COLOR;
             default: throw new RuntimeException("Unknown type");
         }
     }

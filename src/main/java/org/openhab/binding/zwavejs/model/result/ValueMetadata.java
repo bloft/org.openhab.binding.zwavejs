@@ -3,14 +3,16 @@ package org.openhab.binding.zwavejs.model.result;
 import java.util.Map;
 
 public class ValueMetadata {
-    private String type;
-    private boolean readable;
-    private boolean writeable;
-    private String label;
-    private String unit;
-    private boolean stateful;
-    private boolean secret;
-    private Map<String, Object> states;
+    public String type;
+    public boolean readable;
+    public boolean writeable;
+    public Integer min;
+    public Integer max;
+    public String label;
+    public String unit;
+    public boolean stateful;
+    public boolean secret;
+    public Map<String, Object> states;
 
     public String getType() {
         return type;
@@ -42,5 +44,13 @@ public class ValueMetadata {
 
     public Map<String, Object> getStates() {
         return states;
+    }
+
+    public Integer getMin() {
+        return min;
+    }
+
+    public Integer getMax() {
+        return max;
     }
 }

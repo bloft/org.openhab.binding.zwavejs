@@ -1,5 +1,6 @@
 package org.openhab.binding.zwavejs.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.openhab.binding.zwavejs.model.result.ValueMetadata;
 
 public class ValueId {
@@ -10,21 +11,25 @@ public class ValueId {
     private String propertyKey;
     private String propertyKeyName;
 
-    ValueMetadata metadata;
+    private ValueMetadata metadata;
 
     public ValueId() {}
+
+    public ValueId(int endpoint, CommandClass commandClass, String property, String propertyKey) {
+        this(endpoint, commandClass.getId(), property, propertyKey);
+    }
 
     public ValueId(int endpoint, int commandClassId, String property, String propertyKey) {
         this.endpoint = endpoint;
         this.commandClass = CommandClass.byId(commandClassId);
         this.property = property;
-        this.propertyName = property;
+        this.propertyKey = propertyKey;
     }
 
     public String getId() {
         StringBuilder sb = new StringBuilder();
-        sb.append(commandClass.getId());
-        sb.append("-").append(endpoint);
+        sb.append(endpoint);
+        sb.append("-").append(commandClass.getId());
         sb.append("-").append(property.replace(" ", "_"));
         if(propertyKey != null) {
             sb.append("-").append(propertyKey.replace(" ", "_"));
@@ -63,5 +68,18 @@ public class ValueId {
 
     public ValueMetadata getMetadata() {
         return metadata;
+    }
+
+    public void setMetadata(ValueMetadata metadata) {
+        this.metadata = metadata;
+    }
+
+    public String getLabel(String label) {
+        return label + (endpoint == 0 ? "" : " " + endpoint);
+    }
+
+    @JsonIgnore
+    public String getLabel() {
+        return getLabel(getMetadata().getLabel());
     }
 }

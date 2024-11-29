@@ -45,7 +45,7 @@ public class EventTest extends AbstractModelTest {
         assertInstanceOf(Ready.class, result.getEvent());
         NodeState node = ((Ready)result.getEvent()).getNodeState();
         assertEquals(5, node.getNodeId());
-        assertEquals(DeviceStatus.DEAD, node.getStatus());
+        assertEquals(DeviceStatus.ALIVE, node.getStatus());
         assertEquals(true, node.isReady());
         assertEquals("QMSW-0A1P8", node.getDeviceConfig().getLabel());
         assertEquals("Wave 1PM Mini", node.getDeviceConfig().getDescription());

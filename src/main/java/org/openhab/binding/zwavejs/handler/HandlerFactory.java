@@ -3,6 +3,7 @@ package org.openhab.binding.zwavejs.handler;
 import org.eclipse.jdt.annotation.NonNullByDefault;
 import org.eclipse.jdt.annotation.Nullable;
 import org.openhab.binding.zwavejs.BindingConstants;
+import org.openhab.binding.zwavejs.channel.ZWaveJSChannelTypeProvider;
 import org.openhab.core.thing.Bridge;
 import org.openhab.core.thing.Thing;
 import org.openhab.core.thing.ThingTypeUID;
@@ -21,11 +22,11 @@ import java.util.Set;
 @Component(service = { ThingHandlerFactory.class }, configurationPid = "binding.zwavejs")
 public class HandlerFactory extends BaseThingHandlerFactory {
 
-    private final ChannelTypeRegistry channelTypeRegistry;
+    private final ZWaveJSChannelTypeProvider channelTypeProvider;
 
     @Activate
-    public HandlerFactory(final @Reference ChannelTypeRegistry channelTypeRegistry) {
-        this.channelTypeRegistry = channelTypeRegistry;
+    public HandlerFactory(final @Reference ZWaveJSChannelTypeProvider channelTypeProvider) {
+        this.channelTypeProvider = channelTypeProvider;
     }
 
     private static final Set<ThingTypeUID> SUPPORTED_THING_TYPES_UIDS = new HashSet<>();
@@ -40,7 +41,7 @@ public class HandlerFactory extends BaseThingHandlerFactory {
         if(thingTypeUID.equals(BindingConstants.BRIDGE_TYPE)) {
             return new BridgeHandler((Bridge) thing);
         } else if(thingTypeUID.equals(BindingConstants.NODE_TYPE)) {
-            return new NodeHandler(thing, channelTypeRegistry);
+            return new NodeHandler(thing, channelTypeProvider);
         }
         return null;
     }

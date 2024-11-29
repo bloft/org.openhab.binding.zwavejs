@@ -25,7 +25,7 @@ public class NotificationChannelDiscovery implements ChannelDiscovery {
                     if(valueId.getMetadata().getStates().size() == 1 || valueId.getMetadata().getStates().size() == 2) {
                         Map states = valueId.getMetadata().getStates();
                         String key = states.keySet().stream().filter(o -> !o.equals("0")).findAny().get().toString();
-                        return of(thing, valueId, BindingConstants.CHANNEL_CONTACT, configOf(valueId, key, "0"));
+                        return of(thing, valueId, BindingConstants.CHANNEL_NOTIFICATION, configOf(valueId, key, "0"));
                     }
                     return of(thing, valueId, BindingConstants.CHANNEL_NUMBER, configOf(valueId));
                 }).toList();
@@ -41,7 +41,8 @@ public class NotificationChannelDiscovery implements ChannelDiscovery {
     private Channel of(ThingUID thing, ValueId valueId, ChannelTypeUID type, Configuration cfg) {
         return ChannelBuilder.create(new ChannelUID(thing, valueId.getId())).
                 withType(type).
-                withLabel(valueId.getMetadata().getLabel()).
+                withAcceptedItemType(type.equals(BindingConstants.CHANNEL_NUMBER) ? "Number" : "Switch").
+                withLabel(valueId.getLabel()).
                 withConfiguration(cfg).
                 build();
     }

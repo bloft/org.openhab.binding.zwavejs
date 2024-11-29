@@ -28,4 +28,153 @@
         <config-description-ref uri="thing-type:zwavejs:switch_channel" />
     </channel-type>
 
+    <channel-type id="color">
+        <item-type>Color</item-type>
+        <label>Color value</label>
+        <category>ColorLight</category>
+        <tags>
+            <tag>Control</tag>
+            <tag>Light</tag>
+        </tags>
+        <config-description-ref uri="thing-type:zwavejs:string_channel" />
+    </channel-type>
+
+
+    <channel-type id="binary-switch">
+        <item-type>Switch</item-type>
+        <label>Switch value</label>
+        <category>Switch</category>
+        <tags>
+            <tag>Switch</tag>
+            <tag>Power</tag>
+        </tags>
+        <config-description-ref uri="thing-type:zwavejs:switch_channel" />
+    </channel-type>
+
+
+
+    <channel-type id="temperature">
+        <item-type>Number:Temperature</item-type>
+        <label>Temperature</label>
+        <description>
+            Current temperature.
+        </description>
+        <category>Temperature</category>
+        <tags>
+            <tag>Measurement</tag>
+            <tag>Temperature</tag>
+        </tags>
+        <config-description-ref uri="thing-type:zwavejs:number_channel" />
+    </channel-type>
+
+    <channel-type id="humidity">
+        <item-type>Number:Dimensionless</item-type>
+        <label>Humidity</label>
+        <description>
+            Atmospheric humidity in percent.
+        </description>
+        <category>Humidity</category>
+        <tags>
+            <tag>Measurement</tag>
+            <tag>Humidity</tag>
+        </tags>
+        <config-description-ref uri="thing-type:zwavejs:number_channel" />
+    </channel-type>
+
+    <channel-type id="illuminance">
+        <item-type>Number:Illuminance</item-type>
+        <label>Illuminance</label>
+        <description>
+            Light level.
+        </description>
+        <category>Sun</category>
+        <tags>
+            <tag>Measurement</tag>
+            <tag>Illuminance</tag>
+        </tags>
+        <config-description-ref uri="thing-type:zwavejs:number_channel" />
+    </channel-type>
+
+    <channel-type id="ultraviolet">
+        <item-type>Number</item-type>
+        <label>Ultraviolet</label>
+        <description>
+            Ultraviolet level.
+        </description>
+        <category>Sun</category>
+        <tags>
+            <tag>Measurement</tag>
+            <tag>Ultraviolet</tag>
+        </tags>
+        <config-description-ref uri="thing-type:zwavejs:number_channel" />
+    </channel-type>
+
+    <channel-type id="pressure">
+        <item-type>Number:Pressure</item-type>
+        <label>Pressure</label>
+        <description>
+            Barometric pressure
+        </description>
+        <category>Pressure</category>
+        <tags>
+            <tag>Measurement</tag>
+            <tag>Pressure</tag>
+        </tags>
+        <config-description-ref uri="thing-type:zwavejs:number_channel" />
+    </channel-type>
+
+
+
+
+    <channel-type id="meter">
+        <item-type>Number</item-type>
+        <label>Current</label>
+        <category>Energy</category>
+        <tags>
+            <tag>Measurement</tag>
+            <tag>Meter</tag>
+        </tags>
+        <config-description-ref uri="thing-type:zwavejs:number_channel" />
+    </channel-type>
+
+    <channel-type id="battery-level">
+        <item-type>Number</item-type>
+        <label>Battery Level</label>
+        <description>
+            Represents the battery level as a percentage (0-100%). Bindings for things supporting battery level in a different format (e.g. 4 levels) should convert to a percentage to provide a consistent battery level reading.
+        </description>
+        <category>Battery</category>
+        <tags>
+            <tag>Measurement</tag>
+            <tag>Energy</tag>
+        </tags>
+        <config-description-ref uri="thing-type:zwavejs:number_channel" />
+    </channel-type>
+
+    <channel-type id="low-battery">
+        <item-type>Switch</item-type>
+        <label>Low Battery</label>
+        <description>
+            Represents a low battery warning with possible values on (low battery) and off (battery ok).
+        </description>
+        <category>LowBattery</category>
+        <tags>
+            <tag>LowBattery</tag>
+            <tag>Energy</tag>
+        </tags>
+        <config-description-ref uri="thing-type:zwavejs:switch_channel" />
+    </channel-type>
+
+
+    <channel-type id="notification">
+        <item-type>Switch</item-type>
+        <label>Notification</label>
+        <category>Alarm</category>
+        <tags>
+            <tag>Notification</tag>
+        </tags>
+        <state readOnly="true" />
+        <config-description-ref uri="thing-type:zwavejs:switch_channel" />
+    </channel-type>
+
 </thing:thing-descriptions>

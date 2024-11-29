@@ -35,8 +35,8 @@ public class ResultTest extends AbstractModelTest {
         NodeState state = result.getResult(ResultWithState.class).state;
         assertEquals(5, state.getNodeId());
         assertEquals(true, state.isReady());
-        assertEquals(DeviceStatus.DEAD, state.getStatus());
-        assertEquals(ThingStatus.OFFLINE, state.getStatus().getStatus());
+        assertEquals(DeviceStatus.ALIVE, state.getStatus());
+        assertEquals(ThingStatus.ONLINE, state.getStatus().getStatus());
         assertEquals("QMSW-0A1P8", state.getDeviceConfig().getLabel());
 
         state.getValues().stream()
@@ -51,8 +51,8 @@ public class ResultTest extends AbstractModelTest {
         NodeState state = result.getResult(ResultWithState.class).state;
         assertEquals(5, state.getNodeId());
         assertEquals(false, state.isReady());
-        assertEquals(DeviceStatus.ALIVE, state.getStatus());
-        assertEquals(ThingStatus.ONLINE, state.getStatus().getStatus());
+        assertEquals(DeviceStatus.DEAD, state.getStatus());
+        assertEquals(ThingStatus.OFFLINE, state.getStatus().getStatus());
         assertEquals("QMSW-0A1P8", state.getDeviceConfig().getLabel());
 
         state.getValues().stream()

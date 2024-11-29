@@ -1,7 +1,8 @@
 package org.openhab.binding.zwavejs.handler;
 
-import org.openhab.binding.zwavejs.BindingConstants;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.openhab.binding.zwavejs.channel.ChannelDiscovery;
+import org.openhab.binding.zwavejs.channel.ZWaveJSChannelTypeProvider;
 import org.openhab.binding.zwavejs.config.ChannelConfig;
 import org.openhab.binding.zwavejs.config.NodeConfig;
 import org.openhab.binding.zwavejs.internal.ZWaveJSClient;
@@ -20,32 +21,34 @@ import org.openhab.binding.zwavejs.model.command.node.GetState;
 import org.openhab.binding.zwavejs.model.event.NodeStatusEvent;
 import org.openhab.binding.zwavejs.model.event.ValueUpdated;
 import org.openhab.binding.zwavejs.model.message.Result;
-import org.openhab.core.library.types.DecimalType;
-import org.openhab.core.library.types.OnOffType;
-import org.openhab.core.library.types.OpenClosedType;
-import org.openhab.core.library.types.StringType;
+import org.openhab.core.library.types.*;
 import org.openhab.core.thing.*;
 import org.openhab.core.thing.binding.BaseThingHandler;
-import org.openhab.core.thing.type.ChannelTypeRegistry;
+import org.openhab.core.thing.type.ChannelType;
+import org.openhab.core.thing.type.ChannelTypeUID;
 import org.openhab.core.types.Command;
 import org.openhab.core.types.RefreshType;
+import org.openhab.core.types.State;
+import org.openhab.core.util.ColorUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.List;
+import java.util.Locale;
 import java.util.Optional;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 public class NodeHandler extends BaseThingHandler implements EventListener {
     private final Logger logger = LoggerFactory.getLogger(NodeHandler.class);
-    private final ChannelTypeRegistry channelTypeRegistry;
+    private ZWaveJSChannelTypeProvider channelTypeProvider;
 
     NodeConfig cfg;
 
-    public NodeHandler(Thing thing, ChannelTypeRegistry channelTypeRegistry) {
+    public NodeHandler(Thing thing, ZWaveJSChannelTypeProvider channelTypeProvider) {
         super(thing);
-        this.channelTypeRegistry = channelTypeRegistry;
+        this.channelTypeProvider = channelTypeProvider;
     }
 
     private BridgeHandler getBridgeHandler() {
@@ -64,6 +67,10 @@ public class NodeHandler extends BaseThingHandler implements EventListener {
 
         getClient().register(this);
 
+        refresh();
+    }
+
+    private void refresh() {
         try {
             getClient().isReady();
 
@@ -72,13 +79,8 @@ public class NodeHandler extends BaseThingHandler implements EventListener {
             update(result.getResult(ResultWithState.class).state);
 
         } catch (Exception e) {
-            logger.error("Error: " + e.getMessage(), e);
             updateStatus(ThingStatus.UNKNOWN);
-        }
-
-        for (Channel channel : getThing().getChannels()) {
-            ValueId valueId = channel.getConfiguration().as(ChannelConfig.class).asValueId();
-            logger.trace("{} : Channel: {} -> {}", cfg.nodeId, channel.getLabel(), valueId.getId());
+            logger.error("{} - Error: {}", cfg.nodeId, e.getMessage(), e);
         }
     }
 
@@ -106,9 +108,12 @@ public class NodeHandler extends BaseThingHandler implements EventListener {
     private void refreshValue(ValueId valueId) {
         logger.info("Refresh value of {}", valueId.getId());
         try {
-            Result result = getClient().sendCommand(new GetValue(cfg.nodeId, valueId)).get();
+            Result result = getClient().sendCommand(new GetValue(cfg.nodeId, valueId)).get(30, TimeUnit.SECONDS);
             if(result.isSuccess()) {
-                updateState(result.getResult(Value.class));
+                logger.info("{} - Result: {}", cfg.nodeId, new ObjectMapper().writeValueAsString(result.getResult()));
+                //updateState(result.getResult(Value.class));
+            } else {
+                logger.warn("{} : Failed to get value", cfg.nodeId);
             }
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -136,22 +141,29 @@ public class NodeHandler extends BaseThingHandler implements EventListener {
         Channel channel = getThing().getChannel(channelUID);
         ValueId valueId = channel.getConfiguration().as(ChannelConfig.class).getTargetValueId();
         if(command instanceof RefreshType) {
-            refreshValue(valueId);
+            //refreshValue(valueId);
+            refresh();
         } else {
             logger.info("{} : handleCommand: {} - {} - {}", cfg.nodeId, channelUID, command.getClass(), valueId.getId());
-            if (channel.getChannelTypeUID().equals(BindingConstants.CHANNEL_NUMBER)) {
-                getClient().sendCommand(new SetValue(cfg.nodeId, valueId, command.toString()));
-            } else if (channel.getChannelTypeUID().equals(BindingConstants.CHANNEL_STRING)) {
-                getClient().sendCommand(new SetValue(cfg.nodeId, valueId, command.toString()));
-            } else if (channel.getChannelTypeUID().equals(BindingConstants.CHANNEL_SWITCH)) {
-                switch ((OnOffType) command) {
-                    case ON:
-                        getClient().sendCommand(new SetValue(cfg.nodeId, valueId, true));
-                        break;
-                    case OFF:
-                        getClient().sendCommand(new SetValue(cfg.nodeId, valueId, false));
-                        break;
-                }
+
+            switch (channel.getAcceptedItemType().split(":")[0]) {
+                case "Number":
+                case "String":
+                    getClient().sendCommand(new SetValue(cfg.nodeId, valueId, command.toString()));
+                    break;
+                case "Switch":
+                    switch ((OnOffType) command) {
+                        case ON:
+                            getClient().sendCommand(new SetValue(cfg.nodeId, valueId, true));
+                            break;
+                        case OFF:
+                            getClient().sendCommand(new SetValue(cfg.nodeId, valueId, false));
+                            break;
+                    }
+                    break;
+                case "Color":
+                    getClient().sendCommand(new SetValue(cfg.nodeId, valueId, hsbToHex((HSBType)command)));
+                    break;
             }
         }
     }
@@ -160,29 +172,58 @@ public class NodeHandler extends BaseThingHandler implements EventListener {
         if(value.getValue() == null) return;
         for (Channel channel : getThing().getChannels()) {
             if(channel.getConfiguration().as(ChannelConfig.class).equals(value)) {
-                logger.info("{} : Channel update: {} : {}", cfg.nodeId, channel.getUID(), value.getValue());
-                if(channel.getChannelTypeUID().equals(BindingConstants.CHANNEL_NUMBER)) {
-                    updateState(channel.getUID(), DecimalType.valueOf(value.getValue().toString()));
-                } else if (channel.getChannelTypeUID().equals(BindingConstants.CHANNEL_STRING)) {
-                    updateState(channel.getUID(), StringType.valueOf(value.getValue().toString()));
-                } else if (channel.getChannelTypeUID().equals(BindingConstants.CHANNEL_CONTACT)) {
-                    if(value.getValue() instanceof Boolean) {
-                        updateState(channel.getUID(), ((boolean)value.getValue()) ? OpenClosedType.OPEN : OpenClosedType.CLOSED);
-                    } else {
-                        String newValue = value.getValue().toString();
-                        if(newValue.equals(channel.getConfiguration().as(ChannelConfig.class).on)) {
-                            updateState(channel.getUID(), OpenClosedType.OPEN);
-                        } else if(newValue.equals(channel.getConfiguration().as(ChannelConfig.class).off)) {
-                            updateState(channel.getUID(), OpenClosedType.CLOSED);
-                        } else {
-                            logger.warn("Unknown value for {} - {}", channel.getUID(), newValue);
-                        }
-                    }
-                } else if (channel.getChannelTypeUID().equals(BindingConstants.CHANNEL_SWITCH)) {
-                    updateState(channel.getUID(), ((boolean)value.getValue()) ? OnOffType.ON : OnOffType.OFF);
-                } else {
-                    logger.info("{} : {} unknown kind {}", cfg.nodeId, channel.getUID(), channel.getChannelTypeUID());
+                logger.info("{} : Channel update: {} : {} : {}", cfg.nodeId, channel.getUID(), channel.getAcceptedItemType(), value.getValue());
+
+                switch (channel.getAcceptedItemType().split(":")[0]) {
+                    case "Number":
+                        updateState(channel.getUID(), DecimalType.valueOf(value.getValue().toString()));
+                        break;
+                    case "String":
+                        updateState(channel.getUID(), StringType.valueOf(value.getValue().toString()));
+                        break;
+                    case "Switch":
+                        updateBooleanState(channel, value.getValue(), OnOffType.ON, OnOffType.OFF);
+                        break;
+                    case "Contact":
+                        updateBooleanState(channel, value.getValue(), OpenClosedType.OPEN, OpenClosedType.CLOSED);
+                        break;
+                    case "Color":
+                        updateState(channel.getUID(), hexToHSB(value.getValue().toString()));
+                        break;
+                    case "Rollershutter":
+                    case "Dimmer":
+                    case "Location":
+                    case "Player":
+                        logger.warn("{} : Unsupported item type: ", cfg.nodeId, channel.getAcceptedItemType());
+                        break;
                 }
+            }
+        }
+    }
+
+    private HSBType hexToHSB(String hexCode) {
+        int red = Integer.valueOf(hexCode.substring(0, 2), 16);
+        int green = Integer.valueOf(hexCode.substring(2, 4), 16);
+        int blue = Integer.valueOf(hexCode.substring(4, 6), 16);
+        return HSBType.fromRGB(red, green, blue);
+    }
+
+    private String hsbToHex(HSBType value) {
+        int[] rgb = ColorUtil.hsbToRgb(value);
+        return String.format("%02x%02x%02x", rgb[0], rgb[1], rgb[2]);
+    }
+
+    private void updateBooleanState(Channel channel, Object value, State onValue, State offValue) {
+        if(value instanceof Boolean) {
+            updateState(channel.getUID(), (boolean) value ? onValue : offValue);
+        } else {
+            String newValue = value.toString();
+            if(newValue.equals(channel.getConfiguration().as(ChannelConfig.class).on)) {
+                updateState(channel.getUID(), onValue);
+            } else if(newValue.equals(channel.getConfiguration().as(ChannelConfig.class).off)) {
+                updateState(channel.getUID(), offValue);
+            } else {
+                logger.warn("Unknown value for {} - {}", channel.getUID(), newValue);
             }
         }
     }
@@ -206,6 +247,18 @@ public class NodeHandler extends BaseThingHandler implements EventListener {
                 // Valid event
             }
         }
+    }
+
+    public ChannelType getChannelType(ChannelTypeUID uid) {
+        for (ChannelType channelType : channelTypeProvider.getChannelTypes(Locale.getDefault())) {
+            logger.info("{} : channelTypes: {}", cfg.nodeId, channelType.getUID());
+            if(uid.equals(channelType.getUID())) {
+                logger.info("{} : ChannelType found: {}", cfg.nodeId, channelType);
+                return channelType;
+            }
+        }
+        logger.warn("{} : Failed to find channel type for {}", cfg.nodeId, uid);
+        return null;
     }
 
     @Override

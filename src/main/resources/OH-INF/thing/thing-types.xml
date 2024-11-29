@@ -26,7 +26,7 @@
         </config-description>
     </bridge-type>
 
-    <thing-type id="node" extensible="string,number">
+    <thing-type id="node" extensible="string,number,contact,switch">
         <supported-bridge-type-refs>
             <bridge-type-ref id="bridge" />
         </supported-bridge-type-refs>

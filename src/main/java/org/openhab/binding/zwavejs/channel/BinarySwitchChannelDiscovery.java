@@ -32,8 +32,9 @@ public class BinarySwitchChannelDiscovery implements ChannelDiscovery {
 
     private Channel of(ThingUID thing, String label, ValueId valueId, ValueId targetValueId) {
         return ChannelBuilder.create(new ChannelUID(thing, valueId.getId())).
-                withType(BindingConstants.CHANNEL_SWITCH).
-                withLabel(label).
+                withType(BindingConstants.CHANNEL_BINARY_SWITCH).
+                withAcceptedItemType(itemType(valueId.getMetadata())).
+                withLabel(valueId.getLabel(label)).
                 withConfiguration(configOf(valueId, targetValueId)).
                 build();
     }
